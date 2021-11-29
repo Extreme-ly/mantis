@@ -23,6 +23,7 @@ html,
 body {
   font-family: 'Raleway', sans-serif;
   background-color: #FCECDD;
+  overflow-x: hidden;
 }
 
 input:focus {

@@ -3,9 +3,12 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      width: {
+        '160': '70rem',
+      },
       colors: {
         'mantis': "#FFC288",
-        'mantis-darker': "#FEA82F",
+        'mantis-darker': "#E5890A",
         'white-darker': "#EEEEEE",
       },
       keyframes: {
