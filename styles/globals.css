@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind keyframes;
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
+@layer components {
+  .title-box {
+    @apply relative flex justify-center	self-center
+  }
+
+  .title {
+    @apply absolute flex justify-center self-center w-screen
+  }
+
+  .section {
+    @apply absolute flex justify-center self-center w-screen 
+  }
+}
+
+html,
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: #FCECDD;
+}
+
+input:focus {
+  outline: none;
+}
+
+
