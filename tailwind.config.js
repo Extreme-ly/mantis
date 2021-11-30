@@ -10,6 +10,8 @@ module.exports = {
         'mantis': "#FFC288",
         'mantis-darker': "#E5890A",
         'white-darker': "#EEEEEE",
+        'gray': '#68798094',
+        'black': '#212121'
       },
       keyframes: {
         fade: {

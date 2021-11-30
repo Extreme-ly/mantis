@@ -22,12 +22,13 @@
 html,
 body {
   font-family: 'Raleway', sans-serif;
-  background-color: #FCECDD;
+  background-color: #fff;
   overflow-x: hidden;
 }
 
 input:focus {
   outline: none;
+  color: #68798094;
 }
 
 

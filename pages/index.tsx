@@ -6,9 +6,41 @@ import { AiFillHeart } from 'react-icons/ai'
 import { IoMdBowtie, IoMdNotifications } from 'react-icons/io'
 import { BsSearch } from 'react-icons/bs'
 import { FaShoppingCart } from 'react-icons/fa'
-import { useState } from 'react'
 
-const Home: NextPage = () => {
+
+// const BlogPosts: NextPage = ({posts}) => {
+//   return (
+//     <>
+//      { posts.map((post)) => (
+//       <div className="border-black border-2">
+//         <div className="flex justify-end w-screen absolute m-5 mt-0">
+//           <Image src={blogPostOne} width="300px" height="240px"/>
+//         </div>
+//         <div className="flex flex-wrap justify-start w-screen absolute">
+//             <span className="relative w-screen text-gray">{ post.date }</span>
+//             <span className="relative w-screen text-gray">{ post.author}</span>
+
+//             <div className="mt-10 lg:w-160 md:w-70 sm:w-30 h-50 text-black hover:text-blue-400">
+//               <a className="relative" href="/posts/1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales tincidunt porta. Nullam et ligula rutrum, mattis velit eu, pellentesque metus. Ut lacinia tellus a finibus tempor. Etiam tortor ligula, convallis nec maximus eget, gravida vel purus. Proin viverra non mauris malesuada varius. Ut pulvinar, sem ut sagittis efficitur, leo dui varius orci, ac sodales arcu neque id purus. Aenean imperdiet libero commodo ex pulvinar, ac elementum sapien luctus. Cras suscipit vitae est id imperdiet. Aenean pulvinar orci sed orci tincidunt posuere. Maecenas pulvinar diam quam, sit amet ultrices lacus sagittis quis. Phasellus vel rhoncus magna. Curabitur aliquam vel quam eu tempus. Duis in nibh vel nibh volutpat fringilla eget eget augue.</a>
+//             </div>
+//         </div>
+//       </div> 
+//      )} 
+//     </>
+
+// }
+
+const Home: NextPage = ({posts}) => {
+  let mostViewedPost:number; 
+  let view:number = 0
+  for (let i = 0; i < posts.length; i++)
+  {
+    if ( view < posts[i].views ){ 
+      view = posts[i].views
+      mostViewedPost = posts[i]
+    }
+  };
+
   return (
     <div>
       <div className="title-box">
@@ -29,24 +61,22 @@ const Home: NextPage = () => {
 
         <div className="section">
           <h1 className="text-mantis text-6xl title animate-fade">Mantis</h1>
-          <p className="text-mantis-darker text-xl relative top-11">Welcome to the blog. Look at <a  href="#" className='text-blue-400'>How To Tie A Knot</a></p>
+          <p className="text-mantis-darker text-xl relative top-11">Welcome to the blog. Look at <a  href={`/posts/${mostViewedPost.id}`} className='text-blue-400'>{mostViewedPost.title}</a></p>
         </div>
       </div>
+      <div className="border-black border-2">
+          <div className="flex justify-end w-screen absolute m-5 mt-0">
+            <Image src={blogPostOne} width="300px" height="240px"/>
+          </div>
+          <div className="flex flex-wrap justify-start w-screen absolute">
+              <span className="relative w-screen text-gray">John Doe</span>
+              <span className="relative w-screen text-gray">26th February 2021</span>
 
-      <div className="border-white border-2">
-        <div className="flex justify-end w-screen absolute m-5 mt-0">
-          <Image src={blogPostOne} width="300px" height="240px"/>
-        </div>
-        <div className="flex flex-wrap justify-start w-screen absolute">
-            <span className="relative w-screen">29th November 2021</span>
-            <span className="relative w-screen">Arihant Jain</span>
-
-            <div className="mt-10 w-160 h-50">
-              <a className="relative" href="/posts/1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales tincidunt porta. Nullam et ligula rutrum, mattis velit eu, pellentesque metus. Ut lacinia tellus a finibus tempor. Etiam tortor ligula, convallis nec maximus eget, gravida vel purus. Proin viverra non mauris malesuada varius. Ut pulvinar, sem ut sagittis efficitur, leo dui varius orci, ac sodales arcu neque id purus. Aenean imperdiet libero commodo ex pulvinar, ac elementum sapien luctus. Cras suscipit vitae est id imperdiet. Aenean pulvinar orci sed orci tincidunt posuere. Maecenas pulvinar diam quam, sit amet ultrices lacus sagittis quis. Phasellus vel rhoncus magna. Curabitur aliquam vel quam eu tempus. Duis in nibh vel nibh volutpat fringilla eget eget augue.</a>
-            </div>
-        </div>
-      </div>  
-
+              <div className="mt-10 lg:w-160 md:w-70 sm:w-30 h-50 text-black hover:text-blue-400">
+                <a className="relative" href="/posts/1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales tincidunt porta. Nullam et ligula rutrum, mattis velit eu, pellentesque metus. Ut lacinia tellus a finibus tempor. Etiam tortor ligula, convallis nec maximus eget, gravida vel purus. Proin viverra non mauris malesuada varius. Ut pulvinar, sem ut sagittis efficitur, leo dui varius orci, ac sodales arcu neque id purus. Aenean imperdiet libero commodo ex pulvinar, ac elementum sapien luctus. Cras suscipit vitae est id imperdiet. Aenean pulvinar orci sed orci tincidunt posuere. Maecenas pulvinar diam quam, sit amet ultrices lacus sagittis quis. Phasellus vel rhoncus magna. Curabitur aliquam vel quam eu tempus. Duis in nibh vel nibh volutpat fringilla eget eget augue.</a>
+              </div>
+          </div>
+        </div> 
     </div>
 
   )
@@ -55,18 +85,18 @@ const Home: NextPage = () => {
 
 
 
-// export async function getStaticProps() {
-//   // Call an external API endpoint to get posts
-//   const res = await fetch('http://localhost:3000/api/hello')
-//   const posts = await res.json()
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts
+  const res = await fetch('http://localhost:3000/api/posts')
+  const posts = await res.json()
 
-//   // By returning { props: { posts } }, the Blog component
-//   // will receive `posts` as a prop at build time
-//   return {
-//     props: {
-//       posts,
-//     },
-//   }
-// }
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      posts,
+    },
+  }
+}
 
 export default Home
