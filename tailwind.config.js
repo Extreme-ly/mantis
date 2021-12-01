@@ -1,6 +1,7 @@
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
+  important: true,
   theme: {
     extend: {
       width: {
@@ -11,7 +12,10 @@ module.exports = {
         'mantis-darker': "#E5890A",
         'white-darker': "#EEEEEE",
         'gray': '#68798094',
-        'black': '#212121'
+        'black': '#212121',
+        'aqua-blue': '#96BAFF',
+        'aqua-purple': '#7C83FD',
+        'aqua-lightblue': '#7DEDFF',
       },
       keyframes: {
         fade: {
