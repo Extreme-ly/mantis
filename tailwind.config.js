@@ -18,13 +18,21 @@ module.exports = {
         'aqua-lightblue': '#7DEDFF',
       },
       keyframes: {
-        fade: {
+        'fade': {
           'from': { opacity: '0' },
           'to': { opacity: '1' },
         },
+        'like': {
+          '0%': { opacity:'0', transform: 'scale(0)' },
+          '15%': { opacity:'.9', transform: 'scale(1.2)' },
+          '30%': { transform: 'scale(.95)' },
+          '45%': {},
+          '80%': { opacity:.9, transform: 'scale(1)' },
+        }
       },
       animation: {
-        fade: 'fade 3s',
+        'fade': 'fade 3s',
+        'like': 'like 1s ease-in-out'
       },
     },
   },
