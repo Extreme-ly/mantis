@@ -6,12 +6,7 @@ import React, { ReactElement } from 'react'
 
 export default function Navbar(): ReactElement {
     return (
-      <>
-        <div className="absolute w-screen">
-          <div className="flex justify-start absolute w-screen">
-              <a href="/" className="ml-5"><IoMdBowtie size="55" color="white" /></a>
-          </div>
-        </div>
+      <>       
         <div className="absolute w-screen">
               <div className="flex justify-end absolute w-screen">
                     <div className="flex justify-end absolute w-screen">

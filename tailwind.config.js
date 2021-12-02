@@ -16,6 +16,11 @@ module.exports = {
         'aqua-blue': '#96BAFF',
         'aqua-purple': '#7C83FD',
         'aqua-lightblue': '#7DEDFF',
+        'lime-matte': '#99A789',
+        'lime-light': '#D3E4CD',
+        'orange-light': '#FED2AA',
+        'orange-matte': '#FF8F86',
+        'skin': '#F3F0D7'
       },
       keyframes: {
         'fade': {
