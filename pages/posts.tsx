@@ -9,6 +9,11 @@ import { IoMdBowtie } from "react-icons/io"
 
 function PostBox({ author, title, content, date }): ReactElement {
     const [like, setLike] = useState(false)
+
+    function handleLike() {
+        setLike(true)
+    }
+    
     return (
             <div className="flex">
                     <div className="flex w-2/3 h-96 m-20 mb-5 mr-0 ml-10 border-gray border-2 justify-start" onDoubleClick={() => ( setLike(true) )}>
@@ -37,7 +42,6 @@ const PostPage: NextPage = ({ posts }) => {
             <Navbar />
             <a href="/" className="ml-5 absolute left-0"><IoMdBowtie size="55" color="white" /></a>
 
-        
             <div>
                 { posts.map((post) => 
                     <PostBox title={post.title} author={post.author} title={post.title} content={post.content} date={post.date} />
@@ -60,6 +64,6 @@ export async function getStaticProps() {
         posts,
       },
     }
-  }
+}
 
 export default PostPage

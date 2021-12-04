@@ -14,12 +14,12 @@ const Home: NextPage = ({posts}) => {
       mostViewedPost = posts[i]
     }
   };
-
+  
   return (
     <div>
       <div className="title-box">
         <Image src={headBackground} alt="beach-image" height="2700px" className="w-screen absolute" />
-        <Navbar />
+        <Navbar postsObject={posts} />
 
         <a href="/" className="ml-5 absolute left-0"><IoMdBowtie size="55" color="white" /></a>
 
