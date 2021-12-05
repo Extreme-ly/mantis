@@ -8,19 +8,20 @@ var searchResults:string[] = []
 
 export default function Navbar({ postsObject }): ReactElement {
     const [searchBox, setsearchBox] = useState(false)    
+    const [search, setSearch] = useState()
   
     const handleSearch = (search:string) => {
       let resultsArray:string[] = []
-
+      
       if ( search === "") {
         setsearchBox(false)
-        return 0;       
+        return [""];       
       }
 
       for (let post = 0; post < postsObject.length; post++) {
         for (let ch = 0; ch < search.length; ch++)
         {
-          if (search[ch].toLowerCase() === postsObject[post].title[ch].toLowerCase())
+          if (search[ch].toLowerCase() === postsObject[post].title[ch]?.toLowerCase())
           {            
             (resultsArray.indexOf(postsObject[post].title) === -1 ? resultsArray.push(postsObject[post].title) : null    )     
           } else {
@@ -32,14 +33,11 @@ export default function Navbar({ postsObject }): ReactElement {
         }
       }
 
-      setsearchBox(true)            
+      setsearchBox(true)    
       
+      setSearch(resultsArray)            
       return resultsArray
     }    
-
-    useEffect(() => {
-      
-    }, [])
 
     return (
       <>       
@@ -51,9 +49,11 @@ export default function Navbar({ postsObject }): ReactElement {
                     
                       {
                         (searchBox) ?
-                          <div className="bg-menu-black h-36 w-80 absolute top-14 right-36 delay-1000">
-                              { searchResults.map((result) => 
-                                <a href="/posts" className="text-xl text-white w-max">{result}</a>
+                          <div className="bg-menu-black h-auto w-80 absolute top-14 right-36 delay-1000">
+                              { searchResults.map((result) =>
+                              <div className="ml-5">
+                                <a href="/posts" className="text-xl relative text-white">{(result.length >= 20) ? result.slice(0, 25) + "..." : result}</a>
+                              </div>
                               )}             
                           </div>
 
@@ -70,4 +70,7 @@ export default function Navbar({ postsObject }): ReactElement {
         </div>
       </>
     )
-  }
+}
+
+
+

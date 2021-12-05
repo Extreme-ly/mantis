@@ -37,7 +37,7 @@ function PostBox({ author, title, content, date }): ReactElement {
 const PostPage: NextPage = ({ posts }) => {
     return (
         <div className="bg-black">
-            <Navbar />
+            <Navbar postsObject={posts} />
             <a href="/" className="ml-5 absolute left-0 mt-2"><GiPrayingMantis size="45" color="white" /></a>
 
             <div>
