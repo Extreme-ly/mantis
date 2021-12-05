@@ -1,12 +1,21 @@
 import { AiFillHeart } from 'react-icons/ai'
-import { IoMdBowtie, IoMdNotifications } from 'react-icons/io'
+import { IoMdNotifications } from 'react-icons/io'
 import { BsSearch, BsSignpostSplitFill } from 'react-icons/bs'
 
 import React, { ReactElement, useState, useEffect } from 'react'
 
+var searchResults:string[] = []
+
 export default function Navbar({ postsObject }): ReactElement {
+    const [searchBox, setsearchBox] = useState(false)    
+  
     const handleSearch = (search:string) => {
       let resultsArray:string[] = []
+
+      if ( search === "") {
+        setsearchBox(false)
+        return 0;       
+      }
 
       for (let post = 0; post < postsObject.length; post++) {
         for (let ch = 0; ch < search.length; ch++)
@@ -23,16 +32,35 @@ export default function Navbar({ postsObject }): ReactElement {
         }
       }
 
-      console.log(resultsArray);
+      setsearchBox(true)            
+      
+      return resultsArray
     }    
-    
+
+    useEffect(() => {
+      
+    }, [])
+
     return (
       <>       
         <div className="absolute w-screen">
               <div className="flex justify-end absolute w-screen">
                     <div className="flex justify-end absolute w-screen">
                       <button className="m-4 mr-2 "><BsSearch color="white" size="33" /></button>
-                      <input type="text" className="w-30 h-7 mt-5 ml-2 mr-3 bg-transparent border-b-2 border-white text-white text-xl" onChange={(e) => ( handleSearch(e.target.value) )} />
+                      <input type="text" className="w-30 h-7 mt-5 ml-2 mr-3 bg-transparent border-b-2 border-white text-white text-xl delay-1000" onChange={(e) => ( searchResults = handleSearch(e.target.value) )} />
+                    
+                      {
+                        (searchBox) ?
+                          <div className="bg-menu-black h-36 w-80 absolute top-14 right-36 delay-1000">
+                              { searchResults.map((result) => 
+                                <a href="/posts" className="text-xl text-white w-max">{result}</a>
+                              )}             
+                          </div>
+
+                        : null
+                      }
+                      
+     
 
                       <a className="m-3 mr-2 " href="#"><AiFillHeart color="white" size="40" /></a>
                       <a className="m-3 mr-2 " href="/posts"><BsSignpostSplitFill color="white" size="40" /></a>

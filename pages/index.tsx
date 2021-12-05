@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import headBackground from '../public/simon-berger-unsplash.jpeg'
 import Navbar from '../components/Navbar'
-import { IoMdBowtie } from 'react-icons/io'
+import { GiPrayingMantis } from 'react-icons/gi'
 
 const Home: NextPage = ({posts}) => {
   let mostViewedPost:number; 
@@ -21,7 +21,7 @@ const Home: NextPage = ({posts}) => {
         <Image src={headBackground} alt="beach-image" height="2700px" className="w-screen absolute" />
         <Navbar postsObject={posts} />
 
-        <a href="/" className="ml-5 absolute left-0"><IoMdBowtie size="55" color="white" /></a>
+        <a href="/" className="ml-5 absolute left-0 mt-2"><GiPrayingMantis size="45" color="white" /></a>
 
         <div className="section">
           <h1 className="text-mantis text-6xl title animate-fade">Mantis</h1>

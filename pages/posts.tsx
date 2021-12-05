@@ -1,11 +1,9 @@
 import Navbar from "../components/Navbar"
-// import PostBox from "../components/postBox"
-// import "../styles/posts.css"
 import type { NextPage } from 'next'
 import { ReactElement, useState } from "react"
 import Image from "next/image"
 import likeHeart from '../public/like-heart.png'
-import { IoMdBowtie } from "react-icons/io"
+import { GiPrayingMantis } from 'react-icons/gi'
 
 function PostBox({ author, title, content, date }): ReactElement {
     const [like, setLike] = useState(false)
@@ -40,7 +38,7 @@ const PostPage: NextPage = ({ posts }) => {
     return (
         <div className="bg-black">
             <Navbar />
-            <a href="/" className="ml-5 absolute left-0"><IoMdBowtie size="55" color="white" /></a>
+            <a href="/" className="ml-5 absolute left-0 mt-2"><GiPrayingMantis size="45" color="white" /></a>
 
             <div>
                 { posts.map((post) => 

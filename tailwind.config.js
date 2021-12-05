@@ -20,7 +20,8 @@ module.exports = {
         'lime-light': '#D3E4CD',
         'orange-light': '#FED2AA',
         'orange-matte': '#FF8F86',
-        'skin': '#F3F0D7'
+        'skin': '#F3F0D7',
+        'menu-black': '#1e2029',
       },
       keyframes: {
         'fade': {
@@ -33,11 +34,11 @@ module.exports = {
           '30%': { transform: 'scale(.95)' },
           '45%': {},
           '80%': { opacity:.9, transform: 'scale(1)' },
-        }
+        },
       },
       animation: {
         'fade': 'fade 3s',
-        'like': 'like 1s ease-in-out'
+        'like': 'like 1s ease-in-out',
       },
     },
   },
