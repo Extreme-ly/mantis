@@ -11,32 +11,45 @@ export default function Navbar({ postsObject }): ReactElement {
     const [search, setSearch] = useState()
   
     const handleSearch = (search:string) => {
-      let resultsArray:string[] = []
-      
+      let resultsArray:any = {}      
       if ( search === "") {
         setsearchBox(false)
         return [""];       
       }
 
-      for (let post = 0; post < postsObject.length; post++) {
-        for (let ch = 0; ch < search.length; ch++)
+      for (let post = 0; post < postsObject.length; post++) { //loops through posts object and performs linear search   
+        for (let ch = 0; ch < postsObject[post].title.length; ch++)
         {
-          if (search[ch].toLowerCase() === postsObject[post].title[ch]?.toLowerCase())
+          if (search[ch]?.toLowerCase() === postsObject[post].title[ch]?.toLowerCase())
           {            
-            (resultsArray.indexOf(postsObject[post].title) === -1 ? resultsArray.push(postsObject[post].title) : null    )     
-          } else {
-            let index = resultsArray.indexOf(postsObject[post].title)            
-            if ( index !== -1) {
-              resultsArray.filter(title => title !== resultsArray[index])
-            }
-          }       
+              if ( resultsArray.hasOwnProperty(postsObject[post].title) ) {
+                let key = postsObject[post].title
+                let val = resultsArray[key]
+                resultsArray[key] = val += 1
+              } else {
+                resultsArray[postsObject[post].title] = 1
+              }
+          }  
         }
-      }
+      }      
 
       setsearchBox(true)    
       
-      setSearch(resultsArray)            
-      return resultsArray
+      let result:any[] = Object.keys(resultsArray).map(function(key) { //converts object into an array
+        return [key, resultsArray[key]];
+      });
+
+      result.sort(function(first, second) {  //sorts dictionary in descending order
+        return second[1] - first[1];
+      });
+      
+      let titles:string[] = [] 
+      for (let i = 0; i < result.length; i++) {
+        titles.push(result[i][0]) //makes an array with only the titles for the map function
+      }
+            
+      setSearch(titles)
+      return titles
     }    
 
     return (
