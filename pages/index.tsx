@@ -14,7 +14,7 @@ const Home: NextPage = ({posts}) => {
       mostViewedPost = posts[i]
     }
   };
-  
+    
   return (
     <div>
       <div className="title-box">

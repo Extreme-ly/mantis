@@ -11,7 +11,7 @@ export default function Navbar({ postsObject }): ReactElement {
     const [search, setSearch] = useState()
   
     const handleSearch = (search:string) => {
-      let resultsArray:any = {}      
+      let resultsDict:any = {}      
       if ( search === "") {
         setsearchBox(false)
         return [""];       
@@ -22,12 +22,12 @@ export default function Navbar({ postsObject }): ReactElement {
         {
           if (search[ch]?.toLowerCase() === postsObject[post].title[ch]?.toLowerCase())
           {            
-              if ( resultsArray.hasOwnProperty(postsObject[post].title) ) {
+              if ( resultsDict.hasOwnProperty(postsObject[post].title) ) {
                 let key = postsObject[post].title
-                let val = resultsArray[key]
-                resultsArray[key] = val += 1
+                let val = resultsDict[key]
+                resultsDict[key] = val += 1
               } else {
-                resultsArray[postsObject[post].title] = 1
+                resultsDict[postsObject[post].title] = 1
               }
           }  
         }
@@ -35,8 +35,8 @@ export default function Navbar({ postsObject }): ReactElement {
 
       setsearchBox(true)    
       
-      let result:any[] = Object.keys(resultsArray).map(function(key) { //converts object into an array
-        return [key, resultsArray[key]];
+      let result:any[] = Object.keys(resultsDict).map(function(key) { //converts object into an array
+        return [key, resultsDict[key]];
       });
 
       result.sort(function(first, second) {  //sorts dictionary in descending order
@@ -62,10 +62,10 @@ export default function Navbar({ postsObject }): ReactElement {
                     
                       {
                         (searchBox) ?
-                          <div className="bg-menu-black h-auto w-80 absolute top-14 right-36 delay-1000">
+                          <div className="bg-menu-black h-auto w-80 fixed top-14 right-36 delay-1000">
                               { searchResults.map((result) =>
                               <div className="ml-5">
-                                <a href="/posts" className="text-xl relative text-white">{(result.length >= 20) ? result.slice(0, 25) + "..." : result}</a>
+                                <a href={`/posts/${result.split(' ').join('-')}`} className="text-xl relative text-white">{(result.length >= 20) ? result.slice(0, 25) + "..." : result}</a>
                               </div>
                               )}             
                           </div>
@@ -76,7 +76,7 @@ export default function Navbar({ postsObject }): ReactElement {
      
 
                       <a className="m-3 mr-2 " href="#"><AiFillHeart color="white" size="40" /></a>
-                      <a className="m-3 mr-2 " href="/posts"><BsSignpostSplitFill color="white" size="40" /></a>
+                      <a className="m-3 mr-2 " href="/browse"><BsSignpostSplitFill color="white" size="40" /></a>
                       <a className="m-3 mr-2" href="#"><IoMdNotifications color="white" size="40" /></a>
                     </div>
               </div>
