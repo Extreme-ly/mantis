@@ -4,23 +4,21 @@ import { ReactElement, useState } from "react"
 import Image from "next/image"
 import likeHeart from '../public/like-heart.png'
 import { GiPrayingMantis } from 'react-icons/gi'
+import { useTheme } from 'next-themes'
+
 
 function PostBox({ author, title, content, date }): ReactElement {
     const [like, setLike] = useState(false)
 
-    function handleLike() {
-        setLike(true)
-    }
-    
     return (
             <div className="flex">
                     <div className="flex w-2/3 h-96 m-20 mb-5 mr-0 ml-10 border-gray border-2 justify-start" onDoubleClick={() => ( setLike(true) )}>
-                        <p className="text-skin text-lg w-screen absolute m-2 mb-0 mr-0">{ date }</p>
-                        <p className="text-skin text-lg w-screen absolute mt-8 mb-0 ml-2">{ author }</p>
-                        <p className="text-orange-matte text-2xl m-20 ml-2">{ title }</p>
+                        <p className="text-black-smooth dark:text-skin text-lg w-screen absolute m-2 mb-0 mr-0 select-none">{ date }</p>
+                        <p className="text-black-smooth dark:text-skin text-lg w-screen absolute mt-8 mb-0 ml-2 select-none">{ author }</p>
+                        <a href={ `posts/${title?.split(' ').join('-')}` } className="text-black-smooth dark:text-orange-matte  text-2xl m-20 ml-2">{ title }</a>
 
-                        <div className="absolute m-10 mt-32 mr-0 ml-2 w-3/5 mb-2">
-                            <p className="text-orange-light text-xl absolute">{ content }</p>
+                        <div className="absolute m-10 mt-32 mr-0 ml-2 w-3/5 mb-2 select-none">
+                            <p className="text-gray-line dark:text-orange-light text-xl absolute">{ content }</p>
                         </div>
 
                         <div className={ like ? "grid select-none place-items-center relative left-0 top-0 right-0 bottom-0 m-auto transform scale-0 opacity-0 animate-like" : "relative left-0 top-0 right-0 bottom-0 m-auto transform scale-0 opacity-0" } >
@@ -36,10 +34,8 @@ function PostBox({ author, title, content, date }): ReactElement {
 
 const PostPage: NextPage = ({ posts }) => {
     return (
-        <div className="bg-black">
-            <Navbar postsObject={posts} />
-            <a href="/" className="ml-5 absolute left-0 mt-2"><GiPrayingMantis size="45" color="white" /></a>
-
+        <div className="bg-white dark:bg-black">
+            <Navbar postsObject={posts} darkMode={true} />
             <div>
                 { posts.map((post) => 
                     <PostBox title={post.title} author={post.author} title={post.title} content={post.content} date={post.date} />
