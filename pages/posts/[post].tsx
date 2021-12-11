@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 import type { NextPage } from 'next'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Navbar from '../../components/Navbar'
-import { GiPrayingMantis } from 'react-icons/gi'
 import { BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs'
 
 function findPost(dict:any, targetVal:any) {    
@@ -22,7 +21,6 @@ const Post:NextPage= ({ posts }:any ) => {
         <div>
             <div className="flex w-screen h-20 bg-black">
                 <Navbar postsObject={posts} />
-                <a href="/" className="ml-5 absolute left-0 mt-2"><GiPrayingMantis size="45" color="white" /></a>
             </div>
 
             <div className="text-5xl flex justify-center m-10  w-screen absolute mb-28">

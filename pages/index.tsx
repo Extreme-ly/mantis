@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import headBackground from '../public/simon-berger-unsplash.jpeg'
 import Navbar from '../components/Navbar'
+import Head from 'next/head'
 
 
 const Home: NextPage = ( {posts}:any ) => {
@@ -21,9 +22,13 @@ const Home: NextPage = ( {posts}:any ) => {
     
   return (
     <div>
+      <Head>
+        <title>Mantis</title>
+        <link rel="icon" href='/logo mantis.png'></link>
+      </Head>
       <div className="title-box">
         <Image src={headBackground} alt="beach-image" height="2700px" className="w-screen absolute" />
-        <Navbar postsObject={posts} darkMode={false} />
+        <Navbar postsObject={posts}/>
 
         <div className="section">
           <h1 className="text-mantis text-6xl title animate-fade">Mantis</h1>
@@ -31,7 +36,6 @@ const Home: NextPage = ( {posts}:any ) => {
         </div>
       </div>
     </div>
-
   )
 }
 

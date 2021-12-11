@@ -3,13 +3,9 @@ import type { NextPage } from 'next'
 import { ReactElement, useState } from "react"
 import Image from "next/image"
 import likeHeart from '../public/like-heart.png'
-import likeHeartDark from '../public/like-heart-dark.png'
-import { useTheme } from "next-themes"
 
-function PostBox({ author, title, content, date }): ReactElement {
+function PostBox( { author, title, content, date }:any ): ReactElement {
     const [like, setLike] = useState(false)
-    const {theme, setTheme} = useTheme()
-
 
     return (
             <div className="flex">
@@ -23,7 +19,7 @@ function PostBox({ author, title, content, date }): ReactElement {
                         </div>
 
                         <div className={ like ? "flex justify-center select-none relative left-0 top-0 right-0 bottom-0 m-auto transform scale-0 opacity-0 drop-shadow-2xl animate-like" : "relative left-0 top-0 right-0 bottom-0 m-auto transform scale-0 opacity-0" } >
-                            <Image src={(theme === 'light') ? likeHeartDark : likeHeart} height="140px" width="140px" className={like ? "visible" : "hidden"} />
+                            <Image src={likeHeart} height="140px" width="140px" className={like ? "visible" : "hidden"} />
                         </div>
                     </div>
 
@@ -33,13 +29,13 @@ function PostBox({ author, title, content, date }): ReactElement {
     )
 }
 
-const PostPage: NextPage = ({ posts }) => {
+const PostPage: NextPage = ( { posts }:any ) => {
     return (
         <div className="bg-black">
             <Navbar postsObject={posts} />
             <div>
-                { posts.map((post) => 
-                    <PostBox title={post.title} author={post.author} title={post.title} content={post.content} date={post.date} />
+                { posts.map((post:any) => 
+                    <PostBox title={post.title} author={post.author} content={post.content} date={post.date} />
                 )}
             </div>
       

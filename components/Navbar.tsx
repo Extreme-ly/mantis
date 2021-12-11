@@ -1,10 +1,11 @@
 import { AiFillHeart } from 'react-icons/ai'
-import { RiMoonClearFill } from 'react-icons/ri'
 import { IoMdNotifications } from 'react-icons/io'
-import { BsSearch, BsSignpostSplitFill, BsFillSunFill } from 'react-icons/bs'
+import { BsSearch, BsSignpostSplitFill } from 'react-icons/bs'
 
-import React, { ReactElement, useState, useEffect } from 'react'
-import { GiPrayingMantis } from 'react-icons/gi'
+import React, { ReactElement, useState } from 'react'
+import Logo from '../public/logo mantis.png'
+import Image from 'next/image'
+
 
 var searchResults:string[] = []
 
@@ -83,7 +84,7 @@ export default function Navbar({ postsObject }:any ): ReactElement {
               </div>
         </div>
         <div>
-          <a href="/" className="ml-5 absolute left-0 mt-2"><GiPrayingMantis size="45" color='white' /></a>
+          <a href="/" className="ml-5 absolute left-0 mt-2"><Image src={Logo} width="50px" height="60px" /></a>
         </div>
       </>
     )
