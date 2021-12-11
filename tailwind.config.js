@@ -1,7 +1,7 @@
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class', // or 'media' or 'class'
-  important: true,
+  important: false,
   theme: {
     extend: {
       width: {
@@ -12,7 +12,7 @@ module.exports = {
         'mantis-darker': "#E5890A",
         'white-darker': "#EEEEEE",
         'gray': '#68798094',
-        'gray-line': '#30475E',
+        'gray-line': '#222831',
         'black': '#212121',
         'black-smooth': '#222831',
         'aqua-blue': '#96BAFF',
@@ -24,6 +24,8 @@ module.exports = {
         'orange-matte': '#FF8F86',
         'skin': '#F3F0D7',
         'menu-black': '#1e2029',
+        'yellow': '#FFD369',
+        'orange': '#FEA82F',
 
         'dark-blue': '#064663',
         

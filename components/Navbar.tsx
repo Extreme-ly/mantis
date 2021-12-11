@@ -4,22 +4,13 @@ import { IoMdNotifications } from 'react-icons/io'
 import { BsSearch, BsSignpostSplitFill, BsFillSunFill } from 'react-icons/bs'
 
 import React, { ReactElement, useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
 import { GiPrayingMantis } from 'react-icons/gi'
 
 var searchResults:string[] = []
 
-export default function Navbar({ postsObject, darkMode }): ReactElement {
+export default function Navbar({ postsObject }:any ): ReactElement {
     const [searchBox, setsearchBox] = useState(false)    
-    const [search, setSearch] = useState()
-    const {theme, setTheme} = useTheme()
-
-
-    // const DarkModeToggle = () => {
-    //   return (
-    //     <button className="m-3 mr-2"> { (theme === "light") ? <RiMoonClearFill color="#212121" size="40" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} /> : <BsFillSunFill color="white" size="40" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} /> }  </button>
-    //   )
-    // }
+    const [search, setSearch] = useState<string[] | null>()
     
     const handleSearch = (search:string) => {
       let resultsDict:any = {}      
@@ -42,7 +33,7 @@ export default function Navbar({ postsObject, darkMode }): ReactElement {
               }
           }  
         }
-      }      
+      }            
 
       setsearchBox(true)    
       
@@ -68,12 +59,13 @@ export default function Navbar({ postsObject, darkMode }): ReactElement {
         <div className="absolute w-screen">
               <div className="flex justify-end absolute w-screen">
                     <div className="flex justify-end absolute w-screen">
-                      <button className="m-4 mr-2 "><BsSearch  color={ (theme === 'light' ? 'black' : 'white') } size="33" /></button>
-                      <input type="text" className="w-30 h-7 mt-5 ml-2 mr-3 bg-transparent border-b-2 dark:border-white border-black text-black dark:text-white text-xl delay-1000" onChange={(e) => ( searchResults = handleSearch(e.target.value) )} />
+                    <button className="m-4 mr-2 "><BsSearch color="white" size="33" /></button>
+                    <input type="text" className="w-30 h-7 mt-5 ml-2 mr-3 bg-transparent border-b-2 border-white text-white-darker focus:outline-none text-xl delay-1000" onChange={(e) => ( searchResults = handleSearch(e.target.value) )} />
+                    
 
                       {
                         (searchBox) ?
-                          <div className="bg-menu-black h-auto w-80 fixed top-14 right-36 delay-1000">
+                          <div className="bg-menu-black z-10 absolute h-auto w-80 fixed top-14 right-36 delay-1000">
                               { searchResults.map((result) =>
                               <div className="ml-5">
                                 <a href={`/posts/${result.split(' ').join('-')}`} className="text-xl relative text-white">{(result.length >= 20) ? result.slice(0, 25) + "..." : result}</a>
@@ -84,17 +76,15 @@ export default function Navbar({ postsObject, darkMode }): ReactElement {
                         : null
                       }
                       
-                      { (darkMode) ?         <button className="m-3 mr-2"> { (theme === "light") ? <RiMoonClearFill color="#212121" size="40" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} /> : <BsFillSunFill color="white" size="40" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} /> }  </button> : null}
-                      <a className="m-3 mr-2 " href="#"><AiFillHeart color={ (theme === 'light' ? '#212121' : 'white') } size="40" /></a>
-                      <a className="m-3 mr-2 " href="/browse"><BsSignpostSplitFill color={ (theme === 'light' ? '#212121' : 'white') } size="40" /></a>
-                      <a className="m-3 mr-2" href="/notif"><IoMdNotifications color={ (theme === 'light' ? '#212121' : 'white') } size="40" /></a>
+                      <a className="m-3 mr-2 " href="#"><AiFillHeart color="white" size="40" /></a>
+                      <a className="m-3 mr-2 " href="/browse"><BsSignpostSplitFill color="white" size="40" /></a>
+                      <a className="m-3 mr-2" href="#"><IoMdNotifications color="white" size="40" /></a>
                     </div>
               </div>
         </div>
         <div>
-          <a href="/" className="ml-5 absolute left-0 mt-2"><GiPrayingMantis size="45" color={ (theme === 'light' ? '#212121' : 'white') } /></a>
+          <a href="/" className="ml-5 absolute left-0 mt-2"><GiPrayingMantis size="45" color='white' /></a>
         </div>
-
       </>
     )
 }

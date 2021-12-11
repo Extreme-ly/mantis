@@ -26,11 +26,6 @@ body {
   overflow-x: hidden;
 }
 
-input:focus {
-  outline: none;
-  color: #68798094;
-}
-
 
 .custom-shape-divider-top-1638858916 {
   position: relative;
@@ -50,7 +45,7 @@ input:focus {
 }
 
 .custom-shape-divider-top-1638858916 .shape-fill {
-  fill: #CEE5D0; 
+  fill: #87AAAA; 
 } 
 
 /* C8E3D4 */

@@ -4,9 +4,9 @@ import headBackground from '../public/simon-berger-unsplash.jpeg'
 import Navbar from '../components/Navbar'
 
 
-const Home: NextPage = ({posts}) => {
+const Home: NextPage = ( {posts}:any ) => {
   
-  let mostViewedPost:number; 
+  let mostViewedPost; 
 
   let view:number = 0
   for (let i = 0; i < posts.length; i++)
