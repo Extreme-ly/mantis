@@ -35,8 +35,8 @@ const PostPage: NextPage = ( { posts }:any ) => {
         <div className="bg-black">
             <Navbar postsObject={posts} />
             <div>
-                { posts.map((post:any) => 
-                    <PostBox title={post.title} author={post.author} content={post.content} date={post.date} />
+                { posts.map((post:any, key:number) => 
+                    <PostBox key={key} title={post.title} author={post.author} content={post.content} date={post.date} />
                 )}
             </div>
       

@@ -68,8 +68,8 @@ export default function Navbar({ postsObject }:any ): ReactElement {
                       {
                         (searchBox) ?
                           <div className="bg-menu-black z-10 absolute h-auto w-80 fixed top-14 right-36 delay-1000">
-                              { searchResults.map((result) =>
-                              <div className="ml-5">
+                              { searchResults.map((result, key) =>
+                              <div className="ml-5" key={key}>
                                 <Link href={`/posts/${result.split(' ').join('-')}`}><a  className="text-xl relative text-white">{(result.length >= 20) ? result.slice(0, 25) + "..." : result}</a></Link>
                               </div>
                               )}             
@@ -79,7 +79,7 @@ export default function Navbar({ postsObject }:any ): ReactElement {
                       }
                       
                       <Link href="#"><a className="m-3 mr-2 "><AiFillHeart color="white" size="40" /></a></Link>
-                      <Link href="/browse"><a className="m-3 mr-2 " href="/browse"><BsSignpostSplitFill color="white" size="40" /></a></Link>
+                      <Link href="/browse"><a className="m-3 mr-2 "><BsSignpostSplitFill color="white" size="40" /></a></Link>
                       <Link href="/notif"><a className="m-3 mr-2"><IoMdNotifications color="white" size="40" /></a></Link>
                     </div>
               </div>
