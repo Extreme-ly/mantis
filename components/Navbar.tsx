@@ -5,6 +5,7 @@ import { BsSearch, BsSignpostSplitFill } from 'react-icons/bs'
 import React, { ReactElement, useState } from 'react'
 import Logo from '../public/logo mantis.png'
 import Image from 'next/image'
+import Link from 'next/link'
 
 
 var searchResults:string[] = []
@@ -69,7 +70,7 @@ export default function Navbar({ postsObject }:any ): ReactElement {
                           <div className="bg-menu-black z-10 absolute h-auto w-80 fixed top-14 right-36 delay-1000">
                               { searchResults.map((result) =>
                               <div className="ml-5">
-                                <a href={`/posts/${result.split(' ').join('-')}`} className="text-xl relative text-white">{(result.length >= 20) ? result.slice(0, 25) + "..." : result}</a>
+                                <Link href={`/posts/${result.split(' ').join('-')}`}><a  className="text-xl relative text-white">{(result.length >= 20) ? result.slice(0, 25) + "..." : result}</a></Link>
                               </div>
                               )}             
                           </div>
@@ -77,14 +78,14 @@ export default function Navbar({ postsObject }:any ): ReactElement {
                         : null
                       }
                       
-                      <a className="m-3 mr-2 " href="#"><AiFillHeart color="white" size="40" /></a>
-                      <a className="m-3 mr-2 " href="/browse"><BsSignpostSplitFill color="white" size="40" /></a>
-                      <a className="m-3 mr-2" href="#"><IoMdNotifications color="white" size="40" /></a>
+                      <Link href="#"><a className="m-3 mr-2 "><AiFillHeart color="white" size="40" /></a></Link>
+                      <Link href="/browse"><a className="m-3 mr-2 " href="/browse"><BsSignpostSplitFill color="white" size="40" /></a></Link>
+                      <Link href="/notif"><a className="m-3 mr-2"><IoMdNotifications color="white" size="40" /></a></Link>
                     </div>
               </div>
         </div>
         <div>
-          <a href="/" className="ml-5 absolute left-0 mt-2"><Image src={Logo} width="50px" height="60px" /></a>
+          <Link href='/'><a className="ml-5 absolute left-0 mt-2"><Image src={Logo} width="50px" height="60px" /></a></Link>
         </div>
       </>
     )

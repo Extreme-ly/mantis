@@ -3,6 +3,7 @@ import Image from 'next/image'
 import headBackground from '../public/simon-berger-unsplash.jpeg'
 import Navbar from '../components/Navbar'
 import Head from 'next/head'
+import Link from 'next/link'
 
 
 const Home: NextPage = ( {posts}:any ) => {
@@ -32,7 +33,7 @@ const Home: NextPage = ( {posts}:any ) => {
 
         <div className="section">
           <h1 className="text-mantis text-6xl title animate-fade">Mantis</h1>
-          <p className="text-mantis-darker  text-xl relative top-11">Welcome to the blog. Look at <a  href={`/posts/${mostViewedPost.title.split(' ').join('-')}`} className='text-blue-400'>{mostViewedPost.title}</a></p>
+          <p className="text-mantis-darker  text-xl relative top-11">Welcome to the blog. Look at <Link href={`/posts/${mostViewedPost.title.split(' ').join('-')}`}><a className='text-blue-400'>{mostViewedPost.title}</a></Link></p>
         </div>
       </div>
     </div>

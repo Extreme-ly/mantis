@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { ReactElement, useState } from "react"
 import Image from "next/image"
 import likeHeart from '../public/like-heart.png'
+import Link from 'next/link'
 
 function PostBox( { author, title, content, date }:any ): ReactElement {
     const [like, setLike] = useState(false)
@@ -12,7 +13,7 @@ function PostBox( { author, title, content, date }:any ): ReactElement {
                     <div className="flex w-2/3 h-96 m-20 mb-5 mr-0 ml-10  border-white-darker border-2 justify-start" onDoubleClick={() => ( setLike(true) )}>
                         <p className="absolute text-skin text-lg w-screen absolute m-2 mb-0 mr-0">{ date }</p>
                         <p className="absolute text-skin text-lg w-screen absolute mt-8 mb-0 ml-2">{ author }</p>
-                        <a href={ `posts/${title?.split(' ').join('-')}` } className="absolute text-orange-matte text-2xl m-20 ml-2">{ title }</a>
+                        <Link href={ `posts/${title?.split(' ').join('-')}` }><a className="absolute text-orange-matte text-2xl m-20 ml-2">{ title }</a></Link>
 
                         <div className="absolute m-10 mt-32 mr-0 ml-2 w-3/5 mb-2">
                             <p className="text-orange-light text-xl absolute">{ content }</p>

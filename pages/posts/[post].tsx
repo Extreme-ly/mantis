@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Navbar from '../../components/Navbar'
 import { BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs'
+import Link from 'next/link'
 
 function findPost(dict:any, targetVal:any) {    
     for (let i = 0; i < dict.length; i++) {
@@ -55,13 +56,20 @@ const Post:NextPage= ({ posts }:any ) => {
                 </div>
 
                 <div className="absolute flex flex-row w-screen top-0 mt-10 space-x-4 justify-start">
-                        <a href="twitter.com" className="text-skin text-xl mt-5 ml-5">{postObject.author}</a>
-                        <BsTwitter size="50" color="#FED2AA" className="relative m-2 top-0" />
-                        
-                        <a href="twitter.com" className="text-skin text-xl mt-5 ml-5">{postObject.author}</a>
+                    
+                    <Link href="twitter.com">
+                        <a className="text-skin text-xl mt-5 ml-5">{postObject.author}</a>
+                    </Link>
+                    <BsTwitter size="50" color="#FED2AA" className="relative m-2 top-0" />
+                    
+                    <Link href="github.com">
+                        <a className="text-skin text-xl mt-5 ml-5">{postObject.author}</a>
+                    </Link>
                         <BsGithub size="50" color="#FED2AA" className="relative m-2 top-0" />
-                        
-                        <a href="twitter.com" className="text-skin text-xl mt-5 ml-5">{postObject.author}</a>
+                    
+                    <Link href="instagram.com">
+                        <a className="text-skin text-xl mt-5 ml-5">{postObject.author}</a>
+                    </Link>
                         <BsInstagram size="50" color="#FED2AA" className="relative m-2 top-0" />    
 
                         <div className="absolute flex w-screen justify-end">
