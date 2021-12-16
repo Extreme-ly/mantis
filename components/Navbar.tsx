@@ -6,14 +6,18 @@ import React, { ReactElement, useState } from 'react'
 import Logo from '../public/logo mantis.png'
 import Image from 'next/image'
 import Link from 'next/link'
+import Notification from './Notification'
+import Liked from './Liked'
 
 
 var searchResults:string[] = []
 
-export default function Navbar({ postsObject }:any ): ReactElement {
+export default function Navbar({ postsObject, notification, liked }:any ): ReactElement {
     const [searchBox, setsearchBox] = useState(false)    
     const [search, setSearch] = useState<string[] | null>()
-    
+    const [notifactionShow, setNotifactionShow] = useState(false)
+    const [heart, setHeart] = useState(false)
+
     const handleSearch = (search:string) => {
       let resultsDict:any = {}      
       if ( search === "") {
@@ -68,9 +72,9 @@ export default function Navbar({ postsObject }:any ): ReactElement {
                       {
                         (searchBox) ?
                           <div className="bg-menu-black z-10 absolute h-auto w-80 fixed top-14 right-36 delay-1000">
-                              { searchResults.map((result, key) =>
+                              { searchResults.map((search, key) =>
                               <div className="ml-5" key={key}>
-                                <Link href={`/posts/${result.split(' ').join('-')}`}><a  className="text-xl relative text-white">{(result.length >= 20) ? result.slice(0, 25) + "..." : result}</a></Link>
+                                <Link href={`/posts/${search.split(' ').join('-')}`}><a  className="text-md relative text-white">{(search.length >= 20) ? search.slice(0, 25) + "..." : search}</a></Link>
                               </div>
                               )}             
                           </div>
@@ -78,9 +82,19 @@ export default function Navbar({ postsObject }:any ): ReactElement {
                         : null
                       }
                       
-                      <Link href="#"><a className="m-3 mr-2 "><AiFillHeart color="white" size="40" /></a></Link>
+                      <button className='m-3 mr-2' onClick={() => ( setHeart(!heart) )}><AiFillHeart color="white" size="40" /></button>
                       <Link href="/browse"><a className="m-3 mr-2 "><BsSignpostSplitFill color="white" size="40" /></a></Link>
-                      <Link href="/notif"><a className="m-3 mr-2"><IoMdNotifications color="white" size="40" /></a></Link>
+                      <button onClick={() => (setNotifactionShow(!notifactionShow))}><IoMdNotifications color="white" size="40" /></button>
+
+                      {
+                        (notifactionShow) ?
+                        <Notification notificationObj={notification} />
+                        : null 
+                      } 
+                      {
+                        (heart) ?
+                        <Liked liked={liked} /> : null
+                      }
                     </div>
               </div>
         </div>

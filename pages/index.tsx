@@ -6,7 +6,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 
-const Home: NextPage = ( {posts}:any ) => {
+const Home: NextPage = ( {posts, notification}:any ) => {
   
   let mostViewedPost; 
 
@@ -29,7 +29,7 @@ const Home: NextPage = ( {posts}:any ) => {
       </Head>
       <div className="title-box">
         <Image src={headBackground} alt="beach-image" height="2700px" className="w-screen absolute" />
-        <Navbar postsObject={posts}/>
+        <Navbar postsObject={posts} notification={notification} />
 
         <div className="section">
           <h1 className="text-mantis text-6xl title animate-fade">Mantis</h1>
@@ -40,19 +40,20 @@ const Home: NextPage = ( {posts}:any ) => {
   )
 }
 
-
-
-
 export async function getStaticProps() {
   // Call an external API endpoint to get posts
   const res = await fetch('http://localhost:3000/api/posts')
   const posts = await res.json()
+
+  const notifications = await fetch('http://localhost:3000/api/notification')
+  const notification = await notifications.json()
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
     props: {
       posts,
+      notification
     },
   }
 }

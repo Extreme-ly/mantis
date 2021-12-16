@@ -13,7 +13,7 @@ function findPost(dict:any, targetVal:any) {
     }
 }
 
-const Post:NextPage= ({ posts }:any ) => {
+const Post:NextPage= ({ posts, notification }:any ) => {
     const router = useRouter()
     const { post } = router.query
     
@@ -21,7 +21,7 @@ const Post:NextPage= ({ posts }:any ) => {
     return (
         <div>
             <div className="flex w-screen h-20 bg-black">
-                <Navbar postsObject={posts} />
+                <Navbar postsObject={posts} notification={notification} />
             </div>
 
             <div className="text-5xl flex justify-center m-10  w-screen absolute mb-28">
@@ -76,7 +76,6 @@ const Post:NextPage= ({ posts }:any ) => {
                             <span className='text-4xl text-white mr-10 mt-4'>Mantis</span>
                         </div>                
                 </div>
-            
             </footer>
         </div>
     )
@@ -86,12 +85,16 @@ export const getStaticProps: GetStaticProps = async() => {
     // Call an external API endpoint to get posts
     const res = await fetch('http://localhost:3000/api/posts')
     const posts = await res.json()
+    
+    const notifications = await fetch('http://localhost:3000/api/notification')
+    const notification = await notifications.json()
   
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
     return {
       props: {
         posts,
+        notification
       },
       revalidate: 10,
     }
