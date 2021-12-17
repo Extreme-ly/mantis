@@ -4,11 +4,13 @@ import headBackground from '../public/simon-berger-unsplash.jpeg'
 import Navbar from '../components/Navbar'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 
 const Home: NextPage = ( {posts, notification}:any ) => {
   
   let mostViewedPost; 
+  const [liked, setLiked] = useState<Storage>()
 
   let view:number = 0
   for (let i = 0; i < posts.length; i++)
@@ -18,6 +20,10 @@ const Home: NextPage = ( {posts, notification}:any ) => {
       mostViewedPost = posts[i]
     }
   };
+
+  useEffect(() => {
+    setLiked(window.localStorage)
+  })
 
   
     
@@ -29,7 +35,7 @@ const Home: NextPage = ( {posts, notification}:any ) => {
       </Head>
       <div className="title-box">
         <Image src={headBackground} alt="beach-image" height="2700px" className="w-screen absolute" />
-        <Navbar postsObject={posts} notification={notification} />
+        <Navbar postsObject={posts} notification={notification} liked={liked} />
 
         <div className="section">
           <h1 className="text-mantis text-6xl title animate-fade">Mantis</h1>

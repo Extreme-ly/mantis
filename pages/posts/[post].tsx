@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Navbar from '../../components/Navbar'
 import { BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs'
 import Link from 'next/link'
+import { useEffect, useState} from 'react'
 
 function findPost(dict:any, targetVal:any) {    
     for (let i = 0; i < dict.length; i++) {
@@ -16,12 +17,16 @@ function findPost(dict:any, targetVal:any) {
 const Post:NextPage= ({ posts, notification }:any ) => {
     const router = useRouter()
     const { post } = router.query
+    const [liked, setLiked] = useState<Storage>()
+    useEffect(() => {
+        setLiked(window.localStorage)
+    })
     
     const postObject = findPost(posts, post)        
     return (
         <div>
             <div className="flex w-screen h-20 bg-black">
-                <Navbar postsObject={posts} notification={notification} />
+                <Navbar postsObject={posts} notification={notification} liked={liked} />
             </div>
 
             <div className="text-5xl flex justify-center m-10  w-screen absolute mb-28">
