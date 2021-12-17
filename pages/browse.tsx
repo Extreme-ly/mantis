@@ -7,10 +7,10 @@ import Link from 'next/link'
 
 
 const PostPage: NextPage = ( { posts, notification }:any ) => { 
-    const [local, setLocal] = useState<Storage>()
+    const [local, setLocal] = useState<Storage>(true)
 
     function PostBox( { author, title, content, date }:any ): ReactElement {
-        const [like, setLike] = useState(false)
+        const [like, setLike] = useState<boolean>()
         const [titlePost, setTitlePost] = useState('')
 
         function handleLike(title:string) {
@@ -22,6 +22,7 @@ const PostPage: NextPage = ( { posts, notification }:any ) => {
         useEffect(() => {
             if (isInitialMount.current) {
                 setLocal(localStorage)
+                setLike(localStorage.hasOwnProperty(title))
                 isInitialMount.current = false;
             } else {
                 const Storage = window.localStorage;                
@@ -30,8 +31,6 @@ const PostPage: NextPage = ( { posts, notification }:any ) => {
             }
             
         }, [titlePost])
-
-    
 
         return (
                 <div className="flex">

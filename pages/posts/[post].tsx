@@ -26,7 +26,8 @@ const Post:NextPage= ({ posts, notification }:any ) => {
     return (
         <div>
             <div className="flex w-screen h-20 bg-black">
-                <Navbar postsObject={posts} notification={notification} liked={liked} />
+                <Navbar postsObject={posts} notification={notification} liked={liked
+                } />
             </div>
 
             <div className="text-5xl flex justify-center m-10  w-screen absolute mb-28">

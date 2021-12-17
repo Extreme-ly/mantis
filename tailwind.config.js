@@ -26,6 +26,8 @@ module.exports = {
         'menu-black': '#1e2029',
         'yellow': '#FFD369',
         'orange': '#FEA82F',
+        'red': '#F05454',
+        'red-high': '#E94560', 
 
         'dark-blue': '#064663',
         
@@ -42,10 +44,16 @@ module.exports = {
           '45%': {},
           '80%': { opacity:.9, transform: 'scale(1)' },
         },
+        'fade-out': {
+          '0%': { opacity: '1'},
+          '99%': { opacity: '0.01'},
+          '100%': { opacity: '0'}
+        }
       },
       animation: {
         'fade': 'fade 3s',
         'like': 'like 1s ease-in-out',
+        'fade-out': 'fade-out 1s'
       },
     },
   },
