@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 
 const PostPage: NextPage = ( { posts, notification }:any ) => { 
-    const [local, setLocal] = useState<Storage>(true)
+    const [local, setLocal] = useState<Storage>()
 
     function PostBox( { author, title, content, date }:any ): ReactElement {
         const [like, setLike] = useState<boolean>()
